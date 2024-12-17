@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<h2>Вход</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+            {% for category, message in messages %}
+                {% if category == 'error' %}
+                    <li style="color: red;">{{ message }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+<form action="{{ url_for('login') }}" method="post">
+    <label for="username">Имя</label>
+    <input type="text" id="username" name="username" required>
+    
+    <label for="password">Пароль</label>
+    <input type="password" id="password" name="password" required>
+    
+    <button type="submit">Логин</button>
+</form>
+
+<p>У вас нет учетной записи? <a href="{{ url_for('register') }}">Зарегистрируйтесь здесь</a>.</p>
+{% endblock %}
+
+
+
+
